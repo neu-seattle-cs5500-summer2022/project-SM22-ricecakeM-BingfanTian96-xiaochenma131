@@ -1,0 +1,816 @@
+swagger: "2.0"
+info: 
+  description: "CarGo is an online used car transaction platform that provides historical price searching, reasonable price suggesting, car price comparison list among states for US sellers and buyers who are unhappy with current insane used car market and sellers who raise prices arbitrarily."
+  version: "1.0.0"
+  title: "CarGo"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "test@northeastern.edu"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "cargo.swagger.io"
+basePath: "/v2"
+tags:
+- name: "Search"
+  description: "Operations about main search page"
+- name: "Car"
+  description: "Operations about car"
+- name: "User"
+  description: "Operations about users # Not finished yet, will be changed in the future"
+
+schemes:
+- "https"
+- "http"
+
+
+paths: 
+  /search:
+    get: 
+      tags: 
+      - "Search"
+      summary: "User search a car on CarGo website"
+      description: ""
+      operationId: "search"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "Year"
+        in: "query"
+        description: "Year when the car was made"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "Make"
+        in: "query"
+        description: "Make of the car"
+        required: true
+        type: "string"
+      - name: "Model"
+        in: "query"
+        description: "Model of the car"
+        required: true
+        type: "string"
+      - name: "State"
+        in: "query"
+        description: "State of the car"
+        required: true
+        type: "string"
+      responses: 
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Car"
+        "400":
+          description: "Invalid parameters value"
+          
+  /car:
+    get: 
+      tags: 
+      - "Car"
+      summary: "Get a car detail by VIN number"
+      description: ""
+      operationId: "detailByVIN"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "VIN"
+        in: "query"
+        description: "The unique VIN of the target car"
+        required: true
+        type: "string"
+      responses: 
+        "200":
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/Car"
+        "400":
+          description: "Invalid VIN supplied"
+        "404":
+          description: "Pet not found"
+          
+    delete:
+      tags:
+      - "Car"
+      summary: "Delete car"
+      description: "This can only be done by the user who create the car."
+      operationId: "deleteCar"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "VIN"
+        in: "query"
+        description: "The unique VIN of the target car"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid VIN number supplied"
+        "404":
+          description: "VIN not found"
+          
+  /car/update:
+    get: 
+      tags: 
+      - "Car"
+      summary: "Get a car detail by VIN number"
+      description: "This can only be done by the user who create the car."
+      operationId: "updateGet"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "VIN"
+        in: "query"
+        description: "The unique VIN of the target car"
+        required: true
+        type: "string"
+      responses: 
+        "200":
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/Car"
+        "400":
+          description: "Invalid VIN supplied"
+        "404":
+          description: "Pet not found"
+    
+    post:
+      tags:
+      - "Car"
+      summary: "Updates a car with form data"
+      description: "This can only be done by the user who create the car."
+      operationId: "updateCarWithForm"
+      consumes:
+      - "application/json"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "VIN"
+        in: "formData"
+        description: "VIN number of the car"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "year"
+        in: "formData"
+        description: "year when the car was made"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "make"
+        in: "formData"
+        description: "make of the car"
+        required: true
+        type: "string"
+      - name: "model"
+        in: "formData"
+        description: "Model of the car"
+        required: true
+        type: "string"
+      - name: "trim"
+        in: "formData"
+        description: "Trim of the car"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "formData"
+        description: "Body of the car"
+        required: true
+        type: "string"
+      - name: "transmission"
+        in: "formData"
+        description: "Transmission of the car"
+        required: true
+        type: "string"
+      - name: "state"
+        in: "formData"
+        description: "State of the car"
+        required: true
+        type: "string"
+      - name: "odometer"
+        in: "formData"
+        description: "Odometer of the car"
+        required: true
+        type: "string"
+      - name: "carCondition"
+        in: "formData"
+        description: "Car condition"
+        required: true
+        type: "number"
+      - name: "color"
+        in: "formData"
+        description: "Color of the car"
+        required: true
+        type: "string"
+      - name: "interior"
+        in: "formData"
+        description: "Interior of the car"
+        required: true
+        type: "string"
+      - name: "mmr"
+        in: "formData"
+        description: "Manheim Market Report of the car"
+        required: true
+        type: "number"
+      - name: "sellingPrice"
+        in: "formData"
+        description: "Selling price of the car"
+        required: true
+        type: "number"
+      - name: "userId"
+        in: "formData"
+        description: "User id"
+        required: true
+        type: "number"
+      responses:
+        "405":
+          description: "Invalid input"
+
+  /car/new:
+    post:
+      tags:
+      - "Car"
+      summary: "User posts a new used car for sale"
+      description: "This can only be done by the logged in user."
+      operationId: "postNew"
+      consumes:
+      - "application/json"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "VIN"
+        in: "formData"
+        description: "VIN number of the car"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "year"
+        in: "formData"
+        description: "year when the car was made"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "make"
+        in: "formData"
+        description: "make of the car"
+        required: true
+        type: "string"
+      - name: "model"
+        in: "formData"
+        description: "Model of the car"
+        required: true
+        type: "string"
+      - name: "trim"
+        in: "formData"
+        description: "Trim of the car"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "formData"
+        description: "Body of the car"
+        required: true
+        type: "string"
+      - name: "transmission"
+        in: "formData"
+        description: "Transmission of the car"
+        required: true
+        type: "string"
+      - name: "state"
+        in: "formData"
+        description: "State of the car"
+        required: true
+        type: "string"
+      - name: "odometer"
+        in: "formData"
+        description: "Odometer of the car"
+        required: true
+        type: "string"
+      - name: "carCondition"
+        in: "formData"
+        description: "Car condition"
+        required: true
+        type: "number"
+      - name: "color"
+        in: "formData"
+        description: "Color of the car"
+        required: true
+        type: "string"
+      - name: "interior"
+        in: "formData"
+        description: "Interior of the car"
+        required: true
+        type: "string"
+      - name: "mmr"
+        in: "formData"
+        description: "Manheim Market Report of the car"
+        required: true
+        type: "number"
+      - name: "sellingPrice"
+        in: "formData"
+        description: "Selling price of the car"
+        required: true
+        type: "number"
+      - name: "userId"
+        in: "formData"
+        description: "User id"
+        required: true
+        type: "number"
+      responses:
+        "405":
+          description: "Invalid input"
+
+  /signin:
+    post: 
+      tags: 
+      - "User"
+      summary: "User sign in to the CarGo website"
+      description: ""
+      operationId: "signin"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "email"
+        in: "query"
+        description: "The user email for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The user password for login"
+        required: true
+        type: "string"
+      responses: 
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "400":
+          description: "Invalid username/password supplied"
+  /signup:
+    post: 
+      tags: 
+      - "User"
+      summary: "User sign up to the CarGo website"
+      description: ""
+      operationId: "signup"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "email"
+        in: "query"
+        description: "The user email"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The user password"
+        required: true
+        type: "string"
+      - name: "firstName"
+        in: "query"
+        description: "The user's first name"
+        required: true
+        type: "string"
+      - name: "lastName"
+        in: "query"
+        description: "The user's last name"
+        required: true
+        type: "string"
+      - name: "zip"
+        in: "query"
+        description: "The user's zip code"
+        required: true
+        type: "integer"
+      - name: "dob"
+        in: "query"
+        description: "The user's date of birth"
+        required: true
+        type: "string"
+        format: "date-time"
+      responses: 
+        default: 
+          description: "successful operation"
+    
+  /profile:
+    get: 
+      tags: 
+      - "User"
+      summary: "View user profile information by user id"
+      description: "This can only be done by the logged in user."
+      operationId: "viewUserProfileById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "userId"
+        in: "query"
+        description: "The user id for CarGo"
+        required: true
+        type: "string"
+      responses: 
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid userId supplied"
+        "404":
+          description: "User not found"
+    put: 
+      tags: 
+      - "User"
+      summary: "Update user profile"
+      description: "This can only be done by the logged in user."
+      operationId: "updateUserProfile"
+      consumes:
+      - "application/json"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "userId"
+        in: "formData"
+        description: "The user id for CarGo"
+        required: true
+        type: "string"
+      - name: "firstName"
+        in: "formData"
+        description: "The user's first name"
+        required: true
+        type: "string"
+      - name: "lastName"
+        in: "formData"
+        description: "The user's last name"
+        required: true
+        type: "string"
+      - name: "email"
+        in: "formData"
+        description: "The user's email"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        description: "The user's password"
+        required: true
+        type: "string"
+      responses: 
+        "400":
+          description: "Invalid inputs supplied"
+        "404":
+          description: "User not found"
+          
+  /profile/message:
+    get:
+      tags:
+      - "User"
+      summary: "User view messages for all messages in his inbox"
+      description: "This can only be done by the logged in user."
+      operationId: "allMessage"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        type: "string"
+        name: "userId"
+        description: "The unique user Id of user"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Message"
+        "405":
+          description: "Invalid input"
+          
+  /profile/post:
+    get:
+      tags:
+      - "User"
+      summary: "User view all cars created by himself"
+      description: "This can only be done by the logged in user."
+      operationId: "allCars"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        type: "string"
+        name: "userId"
+        description: "The unique user Id of user"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Car"
+        "405":
+          description: "Invalid input"
+          
+  /profile/save:
+    get:
+      tags:
+      - "User"
+      summary: "User view all cars created by himself"
+      description: "This can only be done by the logged in user."
+      operationId: "allSave"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        type: "string"
+        name: "userId"
+        description: "The unique user Id of user"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Save"
+        "405":
+          description: "Invalid input"
+          
+  /save:
+    post:
+      tags:
+      - "User"
+      summary: "Save a new used car"
+      description: "This can only be done by the logged in user."
+      operationId: "saveCar"
+      consumes:
+      - "application/json"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "vin"
+        description: "Vin of the car"
+        type: "number"
+        required: true
+      - in: "query"
+        name: "userId"
+        description: "The unique user Id of user"
+        type: "number"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid inputs supplied"
+        "404":
+          description: "User or car not found"
+    
+    delete:
+      tags:
+      - "User"
+      summary: "Delete a saved car"
+      description: "This can only be done by the logged in user."
+      operationId: "deleteSave"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "query"
+        description: "The unique user Id of user"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid VIN number supplied"
+        "404":
+          description: "VIN not found"
+    
+  /message:
+    post: 
+      tags: 
+      - "User"
+      summary: "User send a message to another user"
+      description: ""
+      operationId: "sendMessage"
+      consumes:
+      - "application/json"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: 
+      - name: "from"
+        in: "query"
+        description: "Id for the user who send this message"
+        required: true
+        type: "string"
+      - name: "to"
+        in: "query"
+        description: "Id for the user who received this message"
+        required: true
+        type: "string"
+      - name: "content"
+        in: "formData"
+        description: "Id for the user who received this message"
+        required: true
+        type: "string"
+      - name: "sendTime"
+        in: "formData"
+        description: "Id for the user who received this message"
+        required: true
+        type: "string"
+      responses: 
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid username/password supplied"
+    
+    
+    
+definitions:
+  User:
+    type: "object"
+    properties:
+      userId:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      zip:
+        type: "string"
+      DOB:
+        type: "string"
+        format: "date"
+    xml:
+      name: "User"
+
+  Admin:
+    type: "object"
+    properties:
+      userId:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Admin"
+  
+  Message:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      sendTime:
+        type: "string"
+        format: "date-time"
+      content:
+        type: "string"
+      from:
+        type: "integer"
+        format: "int64"
+      to:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Message"
+      
+  Review:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      createTime:
+        type: "string"
+        format: "date-time"
+      content:
+        type: "string"
+      from:
+        type: "integer"
+        format: "int64"
+      to:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Message"
+      
+  Car:
+    type: "object"
+    properties:
+      vin:
+        type: "string"
+      year:
+        type: "integer"
+        format: "int64"
+      make:
+        type: "string"
+      model:
+        type: "string"
+      trim:
+        type: "string"
+      body:
+        type: "string"
+      transmission:
+        type: "string"
+      state:
+        type: "string"
+      odometer:
+        type: "integer"
+      carCondition:
+        type: "number"
+        format: "double"
+      color:
+        type: "string"
+      interior:
+        type: "string"
+      mmr:
+        type: "integer"
+      sellingPrice:
+        type: "integer" 
+      seller:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Car"
+      
+  Save:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      vin:
+        type: "string"
+      user:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Save"
+      
+  ConnectionManager:
+    type: "object"
+    properties:
+      user:
+        type: "string"
+      password:
+        type: "string"
+      hostName:
+        type: "string"
+      port:
+        type: "integer"
+      schema:
+        type: "string"
+      timezone:
+        type: "string"
+    xml:
+      name: "ConnectionManager"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
