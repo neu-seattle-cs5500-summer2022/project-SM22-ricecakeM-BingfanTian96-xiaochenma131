@@ -1,9 +1,7 @@
 # Group 5 - CarGo
-# Bingfan Tian, Bo Chen, 
-# Jianqing Ma, Kaiwen Zhou, 
-# Qihui Liu, Sen Yan
-# CS5200 - PM2
-# 2/24/2022
+# Bingfan Tian
+# CS5500 - group project
+# 6/30/2022
 
 USE CarGo_5500;
 
