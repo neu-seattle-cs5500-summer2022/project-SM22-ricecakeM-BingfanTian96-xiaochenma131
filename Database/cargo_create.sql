@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS Reviews;
 DROP TABLE IF EXISTS Saves;
 DROP TABLE IF EXISTS Cars;
 DROP TABLE IF EXISTS Searches;
+DROP TABLE IF EXISTS Sellers;
+DROP TABLE IF EXISTS Buyers;
 DROP TABLE IF EXISTS Admins;
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Companies;
@@ -34,6 +36,24 @@ CREATE TABLE Admins (
  CONSTRAINT fk_Admins_UserId FOREIGN KEY (UserId)
   REFERENCES Users(UserId)
   ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table Searches(
+    SearchId 		int 	auto_increment,
+    Year 			int,
+    Make 			varchar(255),
+    Model 			varchar(255),
+    Trim 			varchar(255),
+    Body 			varchar(255),
+    Transmission 	varchar(255),
+    State 			varchar(255),
+    Odometer 		int,
+    CarCondition 	double,
+    Color 			varchar(255),
+    Interior 		varchar(255),
+    UserId 			int,
+    constraint pk_Search_SearchId primary key (SearchId),
+    constraint fk_Search_UserId foreign key (UserId) references Users(UserId)
 );
 
 create table Cars(
@@ -89,17 +109,5 @@ CREATE TABLE Saves(
 	CONSTRAINT fk_Saves_Vin FOREIGN KEY(Vin) REFERENCES Cars(Vin)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_Saves_UserId FOREIGN KEY(UserId) REFERENCES Users(UserId)
-	ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE Searches(
-	SearchId 		INT 	AUTO_INCREMENT,
-	Year 		INT,
-    Make 		varchar(255),
-    Model 		varchar(255),
-    State 		varchar(255),
-	UserId 		INT,
-	CONSTRAINT pk_Search_SearchId PRIMARY KEY(SearchId),
-	CONSTRAINT fk_Search_UserId FOREIGN KEY(UserId) REFERENCES Users(UserId)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
