@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +29,7 @@ import dal.CarDao;
  * @author: bingfantian
  * @date: 2022年7月5日 上午1:20:39
  */
+@WebServlet("/Search")
 public class SearchPage extends HttpServlet{
 	
 	protected CarDao carDao;
@@ -69,6 +71,6 @@ public class SearchPage extends HttpServlet{
         }
         req.setAttribute("cars", cars);
 
-        req.getRequestDispatcher("/search/search.jsp").forward(req, resp);
+        req.getRequestDispatcher("/Pages/Search.jsp").forward(req, resp);
 	}
 }
