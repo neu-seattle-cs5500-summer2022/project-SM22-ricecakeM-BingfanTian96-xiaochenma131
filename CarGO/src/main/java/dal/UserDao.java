@@ -100,6 +100,15 @@ public class UserDao {
 		}
 	}
 	
+	/**
+	 * @Title: getUserByUserId
+	 * @Description: TODO
+	 * @param userId
+	 * @return
+	 * @throws SQLException User
+	 * @author bingfantian
+	 * @date 2022年7月5日上午1:45:55
+	 */
 	public User getUserByUserId(int userId) throws SQLException {
 		String selectUser = "SELECT UserId,FirstName,LastName,Email,Password,Phone,DOB,ZIP "
 				+ "FROM Users WHERE UserId=?;";

@@ -99,7 +99,7 @@ public class CarDao {
 	
 	/**
 	 * @Title: getObj
-	 * @Description: TODO
+	 * @Description: Get cat object from the mysql query results
 	 * @param results
 	 * @return
 	 * @throws SQLException Car
@@ -153,8 +153,7 @@ public class CarDao {
 			selectStmt.setString(1, vin);
 			results = selectStmt.executeQuery();
 			if(results.next()) {
-				Car car = getObj(results);
-				return car;
+				return getObj(results);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -203,8 +202,7 @@ public class CarDao {
 			selectStmt.setString(4, state);
 			results = selectStmt.executeQuery();
 			while(results.next()) {
-				Car car = getObj(results);
-				cars.add(car);
+				cars.add(getObj(results));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
