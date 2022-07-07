@@ -28,7 +28,7 @@ public class ConnectionManager {
 	// Port to your database server. By default, this is 3307.
 	private final int port= 3306;
 	// Name of the MySQL schema that contains your tables.
-	private final String schema = "cargo-db";
+	private final String schema = "CarGo_5500";
 	// Default timezone for MySQL server.
 	private final String timezone = "UTC";
 
@@ -48,26 +48,21 @@ public class ConnectionManager {
 			connectionProperties.put("user", this.user);
 			connectionProperties.put("password", this.password);
 			connectionProperties.put("serverTimezone", this.timezone);
-			
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 				throw new SQLException(e);
 			}
-//			jdbc:driver://hostname:port/dbName?user=userName&password=password
-//			jdbc:mysql://cargo-db.cqynzwdepp6o.us-east-2.rds.amazonaws.com:3306/?user=admin
+			
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://" + this.hostName + ":" + this.port + "/" + this.schema + "?user="+this.user + "&password=" + this.password);
+					"jdbc:mysql://" + this.hostName + ":" + this.port + "/" + this.schema + "?useSSL=false",
+					connectionProperties);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		}
 		return connection;
-		
-//		Class.forName("com.mysql.jdbc.Driver");
-//		String jdbcUrl = "jdbc:postgresql://" + this.hostName + ":" + this.port + "/" + this.schema + "?user=" + this.user + "&password=" + this.password;
-//	    Connection con = DriverManager.getConnection(jdbcUrl);
 		
 	}
 
