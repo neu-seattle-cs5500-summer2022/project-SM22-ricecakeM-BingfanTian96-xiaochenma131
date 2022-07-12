@@ -1,0 +1,58 @@
+Form {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.article-card {
+  margin: 5%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.car-card {
+  margin: 10%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+a > Button{
+  margin-left: 5%;
+}
+
+.bg-myNav {
+  background-color: #F0F8FF;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+.custom-btn {
+  background-color: #6c757d!important;
+  border-color: #6c757d!important;
+}
+
+.review-para {
+  text-align: center;
+  font-size: x-large;
+  margin: 5%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.review-btn {
+  margin-left: 5%;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form-button {
+  margin-top: 2%;
+  position: relative;
+  max-width: 100px;
+}
+
+span {
+ font-weight: bold; 
+}
