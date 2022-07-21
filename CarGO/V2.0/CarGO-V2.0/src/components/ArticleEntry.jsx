@@ -11,25 +11,25 @@ export default function ArticleEntry() {
     const params = useParams();
     const [username, setUsername] = useState(undefined);
 
-    useEffect(()=> {
+    useEffect(() => {
         Axios.get('/api/articles/' + params.articleId)
-        .then(function(response) {
-            setArticle(response.data);
-        });
+            .then(function (response) {
+                setArticle(response.data);
+            });
         Axios.get('/api/user/isLoggedIn')
-        .then(response => setUsername(response.data.username))
-        .catch(error => console.log("User is not logged in"));
+            .then(response => setUsername(response.data.username))
+            .catch(error => console.log("User is not logged in"));
     }, []);
 
     const [reviews, setReviews] = useState('');
-    
+
     function getReviews() {
         Axios.get("/api/articles/" + params.articleId + '/reviews')
-        .then(function(response) {
-            setReviews(response.data);
-        })
+            .then(function (response) {
+                setReviews(response.data);
+            })
     }
-    
+
     useEffect(getReviews);
 
     if (!article) {
@@ -41,12 +41,12 @@ export default function ArticleEntry() {
                 </Button>
             </div>)
     }
-    
+
     function deleteArticle() {
         Axios.delete('/api/articles/' + params.articleId)
-        .then(function(response) {
-            setArticle('');
-        })
+            .then(function (response) {
+                setArticle('');
+            })
     }
 
     if (username === article.username) {
@@ -64,7 +64,7 @@ export default function ArticleEntry() {
                 </div>
             </div>
         )
-    }  else if (username) {
+    } else if (username) {
         return (
             <div>
                 <ArticleCard article={article} />

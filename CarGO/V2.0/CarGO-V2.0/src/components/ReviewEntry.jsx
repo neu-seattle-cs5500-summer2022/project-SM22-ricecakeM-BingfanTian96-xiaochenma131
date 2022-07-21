@@ -9,15 +9,15 @@ export default function ReviewEntry() {
     const params = useParams();
     const [username, setUsername] = useState(undefined);
 
-    useEffect(()=> {
-        Axios.get('/api/articles/' + params.articleId + '/reviews/' + params.reviewId)
-        .then(function(response) {
-            setReview(response.data);
-            console.log(response);
-        });
-        Axios.get('/api/user/isLoggedIn')
-        .then(response => setUsername(response.data.username))
-        .catch(error => console.log("User is not logged in"));
+    useEffect(() => {
+        ('/api/articles/' + params.articleId + '/reviews/' + params.reviewId)
+            .then(function (response) {
+                setReview(response.data);
+                console.log(response);
+            });
+        ('/api/user/isLoggedIn')
+            .then(response => setUsername(response.data.username))
+            .catch(error => console.log("User is not logged in"));
     }, []);
 
     if (!review) {
@@ -29,9 +29,9 @@ export default function ReviewEntry() {
     // todo: add delete review 
     function deleteReview() {
         Axios.delete('/api/articles/' + params.articleId + '/reviews/' + params.reviewId)
-        .then(function(response) {
-            setReview('');
-        })
+            .then(function (response) {
+                setReview('');
+            })
     }
 
     if (username === review.username) {
@@ -42,7 +42,7 @@ export default function ReviewEntry() {
                     <Button size="sm" className="custom-btn">Edit</Button>
                 </a>
                 <a href={"/articles/" + params.articleId}>
-                    <Button size="sm" className="custom-btn" onClick={() => deleteReview() }>Delete</Button>
+                    <Button size="sm" className="custom-btn" onClick={() => deleteReview()}>Delete</Button>
                 </a>
             </div>
         )
@@ -51,7 +51,7 @@ export default function ReviewEntry() {
             <div>
                 <ReviewCard review={review} />
             </div>
-            
+
         )
     }
 }

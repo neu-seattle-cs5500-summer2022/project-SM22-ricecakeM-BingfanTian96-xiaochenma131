@@ -13,6 +13,7 @@ import CreateUser from './components/CreateUser';
 import CreateArticle from './components/CreateArticle';
 import ReviewEdit from './components/ReviewEdit';
 import ReviewEntry from './components/ReviewEntry';
+import SearchForm from './components/SearchForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,8 @@ root.render(
         <Route path={"/createArticle"} element={<CreateArticle />} />
         <Route path={"/articles/:articleId/reviews/:reviewId"} element={<ReviewEntry />} />
         <Route path={"/articles/:articleId/edit/:reviewId"} element={<ReviewEdit />} />
+        <Route path={"/search?Year=:Year"} element={<SearchForm />} />
+        <Route path={"/search"} element={<SearchForm />} />
       </Routes>
     </BrowserRouter>
   </div>

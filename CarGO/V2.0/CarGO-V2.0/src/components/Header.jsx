@@ -34,6 +34,7 @@ export default function Header() {
                 <ButtonGroup>
                     <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/login'>Login</Button>
                     <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/createUser'>Sign Up</Button>
+                    <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/search'>Search</Button>
                 </ButtonGroup>
 
             </Navbar>
@@ -46,8 +47,10 @@ export default function Header() {
                 </Navbar.Brand>
                 <Form inline className='mx-3'>
                     <span>{Email}  </span>
-                    <Button size="sm" className="custom-btn" as={Link} to="/createArticle">Create Article</Button>{' '}
-                    <Button size="sm" variant='secondary' onClick={() => logout()}>Logout</Button>
+                    <Button size="sm" className="custom-btn" as={Link} to="/createCar">Create Car</Button>{' '}
+                    {/* Will realize create car function in next step  */}
+                    <Button size="sm" variant='secondary' onClick={() => logout()}>Logout</Button>{' '}
+                    <Button size="sm" className="custom-btn" as={Link} to='/search'>Search</Button>
                 </Form>
             </Navbar>
         )

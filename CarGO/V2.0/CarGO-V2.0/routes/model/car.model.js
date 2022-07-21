@@ -12,35 +12,29 @@ function getAllCars() {
     return CarModel.find().exec();
 }
 
-function getCarByVin(vin) {
-    return CarModel.find({
-        Vin: vin
-    }).exec();
-}
-
 function deleteCar(car) {
     return CarModel.findOneAndDelete(car).exec();
 }
 
-/**
-function getArticleById(id) {
-    return ArticleModel.findById(id).exec();
+function getCarsByFilter(year, make, model, state) {
+    return CarModel.find({
+        Year: year,
+        Make: make,
+        Model: model,
+        State: state,
+    }).exec();
 }
 
-function updateArticleById(article, newArticle) {
-    return ArticleModel.findOneAndUpdate(
-        article,
-        newArticle,
-        { new: true }
-    );
+function getCarsByYear(year) {
+    return CarModel.find({
+        Year: year
+    }).exec();
 }
-*/
 
 module.exports = {
     createCar,
     getAllCars,
     deleteCar,
-    // getArticleById,
-    // updateArticleById,
-    // getArticleByUsername,
+    getCarsByFilter,
+    getCarsByYear,
 }

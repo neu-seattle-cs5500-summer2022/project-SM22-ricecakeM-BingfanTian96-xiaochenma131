@@ -1,6 +1,5 @@
 import React from "react";
 import CarCard from "./CarCard";
-import SearchForm from "./SearchForm";
 
 export default function CarCards(props) {
     const cars = props.cars;
@@ -15,7 +14,6 @@ export default function CarCards(props) {
 
     return (
         <div>
-            <SearchForm />
             {carComponent}
         </div>
     )

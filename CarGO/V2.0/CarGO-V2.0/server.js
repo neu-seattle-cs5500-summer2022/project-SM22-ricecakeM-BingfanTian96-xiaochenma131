@@ -19,6 +19,7 @@ const auth_middleware = require('./routes/middleware/auth_middleware');
 console.log("Connect to DB Successfully");
 
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
