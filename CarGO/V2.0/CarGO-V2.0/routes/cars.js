@@ -7,17 +7,6 @@ const CarModel = require('./model/car.model')
 
 const router = express.Router()
 
-// Get all articles
-// router.get('/', function (request, response) {
-//     return ArticleModel.getAllArticles()
-//         .then(allArticles => {
-//             response.status(200).send(allArticles);
-//         })
-//         .catch(err => {
-//             response.status(400).send(err)
-//         })
-// });
-
 router.get('/', function (request, response) {
     return CarModel.getAllCars()
         .then(allCars => {
@@ -28,13 +17,27 @@ router.get('/', function (request, response) {
         })
 });
 
+// router.post('/search', function (request, response) {
+//     // console.log("Year is: " + request.params.Year);
+//     // const queryParams = new URLSearchParams("?Year=2017");
+//     // const year = queryParams.get("Year");
+//     const Year = request.body.Year;
+//     console.log("Year is: " + Year);
+//     return CarModel.getCarsByYear(Year)
+//         .then(allCars => {
+//             response.status(200).send(allCars);
+//         })
+//         .catch(err => {
+//             response.status(400).send(err)
+//         })
+// });
+
 router.post('/search', function (request, response) {
-    // console.log("Year is: " + request.params.Year);
-    // const queryParams = new URLSearchParams("?Year=2017");
-    // const year = queryParams.get("Year");
     const Year = request.body.Year;
-    console.log("Year is: " + Year);
-    return CarModel.getCarsByYear(Year)
+    const Make = request.body.Make;
+    const Model = request.body.Model;
+    const State = request.body.State;
+    return CarModel.getCarsByFilter(Year, Make, Model, State)
         .then(allCars => {
             response.status(200).send(allCars);
         })
