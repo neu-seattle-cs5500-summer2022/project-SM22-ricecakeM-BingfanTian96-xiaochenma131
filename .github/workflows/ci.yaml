@@ -1,0 +1,35 @@
+name: Automate Build, deploy 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+    - main
+    - develop
+    - releases/**
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Run the build
+        run: |
+          echo "Making the build...."
+          npm run devstart
+          
+      - name: Run the test
+        run: |
+          echo "Making the build...."
+          npm run devstart
+
+      - name: Deploy
+        run: |
+          git add .
+          heroku git push
+          
+          
