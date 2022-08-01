@@ -1,4 +1,4 @@
-name: Automate Build, test, deploy 
+name: Automate Build, deploy 
 
 on:
   push:
@@ -20,14 +20,16 @@ jobs:
       - name: Run the build
         run: |
           echo "Making the build...."
-          npm build
-
-      - name: Run Tests
+          npm run devstart
+          
+      - name: Run the test
         run: |
-          npm test
-          echo "Running tests...."
+          echo "Making the build...."
+          npm run devstart
 
       - name: Deploy
         run: |
+          git add .
           heroku git push
+          
           
