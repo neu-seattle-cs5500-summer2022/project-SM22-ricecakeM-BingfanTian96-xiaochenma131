@@ -8,16 +8,18 @@ function createUser(user) {
     return UserModel.create(user);
 }
 
-// function getUserByUserName(username) {
-//     return UserModel.findOne({ username: username }).exec();
-// }
-
 function getUserByEmail(Email) {
     return UserModel.findOne({ Email: Email }).exec();
 }
 
+function modifyUser(Email, Password, FirstName, LastName, DOB, Zip, Phone) {
+    const filter = { Email: Email };
+    const update = { Password: Password, FirstName: FirstName, LastName: LastName, DOB: DOB, Zip: Zip, Phone: Phone }
+    UserModel.findOneAndUpdate(filter, update).exec();
+}
+
 module.exports = {
     createUser,
-    // getUserByUserName,
     getUserByEmail,
+    modifyUser,
 }

@@ -7,7 +7,9 @@ export default function CarCards(props) {
 
     for (let car of cars) {
         carComponent.push(
-            <CarCard car={car} />
+            <div>
+                <CarCard car={car} />
+            </div>         
         )
     }
     carComponent.reverse();
