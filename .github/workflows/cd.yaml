@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{c35ad4bc-27b7-41ac-a3cf-3844268a8c01}}
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "cargo-cs5500" #Must be unique in Heroku
           heroku_email: "wangyafei1208@gmail.com"
       
