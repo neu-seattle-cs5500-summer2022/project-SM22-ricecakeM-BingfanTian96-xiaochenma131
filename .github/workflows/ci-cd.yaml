@@ -1,0 +1,31 @@
+name: Automate Build, deploy 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Run the build
+        run: |
+          cd CarGO/
+          echo "Making the build...."
+          npm install
+          
+      - name: Deploy
+        run: |
+          cd CarGO/
+          git init
+          heroku git:remote -a cargo-cs5500
+          git add .
+          git commit -am "make it better"
+          git push heroku master -f
