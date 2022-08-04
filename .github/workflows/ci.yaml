@@ -18,11 +18,12 @@ jobs:
       - name: Run the build
         run: |
           echo "Making the build...."
+          npm install
           npm run build
           
       - name: Deploy
         run: |
-          cd /CarGO
+          cd CarGO/
           git add .
           git commit -am "make it better"
           git push heroku master
