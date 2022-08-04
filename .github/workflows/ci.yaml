@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
     - main
-    - develop
-    - releases/**
 
 jobs:
   ci:
@@ -20,16 +18,14 @@ jobs:
       - name: Run the build
         run: |
           echo "Making the build...."
-          npm run devstart
+          npm install
+          npm run build
           
-      - name: Run the test
-        run: |
-          echo "Making the build...."
-          npm run devstart
-
       - name: Deploy
         run: |
+          cd CarGO/
           git add .
-          heroku git push
+          git commit -am "make it better"
+          git push heroku master
           
           
