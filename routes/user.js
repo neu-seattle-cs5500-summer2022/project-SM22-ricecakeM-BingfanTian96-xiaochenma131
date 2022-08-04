@@ -161,4 +161,15 @@ router.post('/', function (request, response) {
         })
 });
 
+
+router.post('/profile', function (request, response) {
+    const { Email, Password, FirstName, LastName, DOB, Zip, Phone } = request.body;
+    return UserModel.modifyUser(Email, Password, FirstName, LastName, DOB, Zip, Phone)
+        .then(dbResponse => {
+            return response.status(200).send({ Email });
+        }).catch(error => {
+            response.status(400).send(error);
+        })
+
+});
 module.exports = router;

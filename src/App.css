@@ -15,7 +15,12 @@ Form {
   margin-bottom: 10px;
 }
 
-a > Button{
+.reply-card {
+  position: relative;
+  margin-left: auto;
+}
+
+a>Button {
   margin-left: 5%;
 }
 
@@ -26,8 +31,10 @@ a > Button{
 }
 
 .custom-btn {
-  background-color: #6c757d!important;
-  border-color: #6c757d!important;
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  position: relative;
+  margin-left: auto;
 }
 
 .review-para {
@@ -54,5 +61,5 @@ a > Button{
 }
 
 span {
- font-weight: bold; 
+  font-weight: bold;
 }

@@ -19,15 +19,15 @@ export default function CreateArticle() {
             description: newDesInput,
             species: newSpecies,
             name: newName,
+        })
+            .then(response => {
+                navigate('/articles/' + response.data._id)
+                setNewTitleInput('');
+                setNewDesInput('');
             })
-        .then(response => {
-            navigate('/articles/' + response.data._id)
-            setNewTitleInput('');
-            setNewDesInput('');
-        })
-        .catch(function(err) {
-            console.log(err);
-        })
+            .catch(function (err) {
+                console.log(err);
+            })
     }
 
     return (
@@ -35,27 +35,27 @@ export default function CreateArticle() {
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control placeholder="Enter the title" 
-                                value={newTitleInput} 
-                                onChange={ e => setNewTitleInput(e.target.value)} />
+                    <Form.Control placeholder="Enter the title"
+                        value={newTitleInput}
+                        onChange={e => setNewTitleInput(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Description</Form.Label>
                     <Form.Control placeholder="Enter the description"
-                                value={newDesInput}
-                                onChange={ e => setNewDesInput(e.target.value)} />
+                        value={newDesInput}
+                        onChange={e => setNewDesInput(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Species</Form.Label>
                     <Form.Control placeholder="Enter the description"
-                                value={newSpecies}
-                                onChange={ e => setNewSpecies(e.target.value)} />
+                        value={newSpecies}
+                        onChange={e => setNewSpecies(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
                     <Form.Control placeholder="Enter the description"
-                                value={newName}
-                                onChange={ e => setNewName(e.target.value)} />
+                        value={newName}
+                        onChange={e => setNewName(e.target.value)} />
                 </Form.Group>
                 <Button size="sm" className="custom-btn" onClick={createNewArticle} as={Link} to={'/'} >
                     Add new Article
