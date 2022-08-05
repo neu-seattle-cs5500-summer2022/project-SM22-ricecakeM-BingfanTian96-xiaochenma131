@@ -21,4 +21,3 @@ jobs:
           heroku_app_name: "cargo-cs5500" #Must be unique in Heroku
           heroku_email: "wangyafei1208@gmail.com"
           appdir: "CarGO"
-          
