@@ -11,6 +11,7 @@ export default function UserProfileEdit(props) {
     const [DOB, setDOB] = useState('');
     const [Zip, setZip] = useState('');
     const [Phone, setPhone] = useState('');
+    const [errorForPassword, setErrorForPassword] = useState(null);
 
     useEffect(checkLogInUser, []);
 
@@ -38,6 +39,24 @@ export default function UserProfileEdit(props) {
                     })
             });
     }
+
+    function isValidPassword(password) {
+        if (password.length >= 8) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const handleChangeForPassword = event => {
+        if (!isValidPassword(event.target.value)) {
+            setErrorForPassword('The password must be at least 8 characters long');
+        } else {
+            setErrorForPassword(null);
+        }
+        setPassword(event.target.value);
+    }
+
     return (
         <div className="article-card">
             <Card className='w-auto'>
@@ -46,7 +65,8 @@ export default function UserProfileEdit(props) {
                     <h5>Email</h5>
                     <input value={Email} />
                     <h5>Password</h5>
-                    <input type='password' value={Password} onChange={e => setPassword(e.target.value)} />
+                    <input type='password' value={Password} placeholder="At least 8 characters" onChange={handleChangeForPassword} />
+                    {errorForPassword && <h6 style={{ color: 'red' }}>{errorForPassword}</h6>}
                     <h5>First Name</h5>
                     <input value={FirstName} onChange={e => setFirstName(e.target.value)} />
                     <h5>Last Name</h5>
