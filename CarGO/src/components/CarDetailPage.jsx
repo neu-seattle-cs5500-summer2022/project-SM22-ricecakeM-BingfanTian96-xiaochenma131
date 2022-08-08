@@ -20,13 +20,13 @@ export default function CarDetailPage() {
             ToId: newToId,
             CarID: newVin
         })
-        .then(response => {
-            // navigate('/cars/' + response.data._id)
-            setNewMessageInput('');
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+            .then(response => {
+                // navigate('/cars/' + response.data._id)
+                setNewMessageInput('');
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
     }
 
     function checkLogInUser() {
@@ -44,13 +44,13 @@ export default function CarDetailPage() {
     //         });
     // }, []);
 
-    function loadCarPage () {
+    function loadCarPage() {
         Axios.get('/api/cars/' + params.CarId)
-        .then(function (response) {
-            setCar(response.data);
-            setToId(response.data.SellerId);
-            setVin(response.data.Vin);
-        });
+            .then(function (response) {
+                setCar(response.data);
+                setToId(response.data.SellerId);
+                setVin(response.data.Vin);
+            });
     }
 
     useEffect(loadCarPage, [])
@@ -63,6 +63,27 @@ export default function CarDetailPage() {
                     Go back to home
                 </Button>
             </div>)
+    } else if (newFromId === '') {
+        return (
+            <div>
+                <div className="car-card">
+                    <Card className='w-auto'>
+                        <Card.Header>
+                            <span color="blue">{car.Make} - {car.Model} - {car.Year} | Price: ${car.SellingPrice}</span></Card.Header>
+                        <Card.Body>
+                            <Card.Text>Vin: {car.Vin} {' '}</Card.Text>
+                            <Card.Text>Trim: {car.Trim} {' '}</Card.Text>
+                            <Card.Text>Body: {car.Body} {' '}</Card.Text>
+                            <Card.Text>Transmission: {car.Transmission} {' '}</Card.Text>
+                            <Card.Text>Odometer: {car.Odometer} Miles{' '}</Card.Text>
+                            <Card.Text>CarCondition: {car.CarCondition} (1 - 5){' '}</Card.Text>
+                            <Card.Text>Color: {car.Color} | Interior: {car.Interior} </Card.Text>
+                            <Card.Text>State: {car.State}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
+            </div>
+        )
     } else {
         return (
             <div>
@@ -76,7 +97,7 @@ export default function CarDetailPage() {
                             <Card.Text>Body: {car.Body} {' '}</Card.Text>
                             <Card.Text>Transmission: {car.Transmission} {' '}</Card.Text>
                             <Card.Text>Odometer: {car.Odometer} Miles{' '}</Card.Text>
-                            <Card.Text>CarCondition: {car.CarCondition} (1 - 10){' '}</Card.Text>
+                            <Card.Text>CarCondition: {car.CarCondition} (1 - 5){' '}</Card.Text>
                             <Card.Text>Color: {car.Color} | Interior: {car.Interior} </Card.Text>
                             <Card.Text>State: {car.State}</Card.Text>
                         </Card.Body>
@@ -85,9 +106,9 @@ export default function CarDetailPage() {
                 <div className="car-card">
                     <Form.Group className="mb-3">
                         <Form.Label>Enter your message</Form.Label>
-                            <Form.Control placeholder="Enter the message"
-                                        value={newMessageInput}
-                                        onChange={e => setNewMessageInput(e.target.value) } />
+                        <Form.Control placeholder="Enter the message"
+                            value={newMessageInput}
+                            onChange={e => setNewMessageInput(e.target.value)} />
                     </Form.Group>
                     <Button size="sm" className="custom-btn" onClick={sendNewMessage} as={Link} to={'/'} >
                         Send

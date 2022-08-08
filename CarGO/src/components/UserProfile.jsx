@@ -37,7 +37,7 @@ export default function UserProfile(props) {
                     <h6>Email: {Email} </h6>
                     <h6>First Name: {FirstName}</h6>
                     <h6>Last Name: {LastName} </h6>
-                    <h6>Date of Birth: {DOB} </h6>
+                    <h6>Date of Birth: {DOB.split('T')[0]} </h6>
                     <h6>Zip: {Zip}</h6>
                     <h6>Phone: {Phone}</h6>
                 </Card.Body>

@@ -61,7 +61,7 @@ function getCarsByFilter(year, make, model, state) {
     } else if (year != '' && make != '') {
         return CarModel.find({
             Year: year,
-            State: state,
+            Make: make,
         }).exec();
     } else if (year != '' && model != '') {
         return CarModel.find({

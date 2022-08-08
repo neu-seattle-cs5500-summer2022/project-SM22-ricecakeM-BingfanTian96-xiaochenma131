@@ -32,7 +32,7 @@ export default function MessageCard(props) {
                     <span color="blue">Message</span></Card.Header>
                 <Card.Body>
                     <Card.Text>From: {message.FromId}</Card.Text>
-                    <Card.Text>Send Time: {message.createdAt}</Card.Text>
+                    <Card.Text>Send Time: {message.createdAt.split('T')[0]} at {message.createdAt.split('T')[1].split('.')[0]}</Card.Text>
                     <Card.Text>Content: {message.Content}</Card.Text>
                     <div className="reply-card">
                         <Form.Group className="mb-3">

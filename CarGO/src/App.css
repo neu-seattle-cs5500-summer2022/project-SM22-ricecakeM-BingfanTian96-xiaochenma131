@@ -60,6 +60,15 @@ a>Button {
   max-width: 100px;
 }
 
+.select-menu {
+  border-color: rgb(203, 202, 202) !important;
+  position: relative;
+  width: 100%;
+  height: 38px;
+  border-radius: 5px;
+
+}
+
 span {
   font-weight: bold;
 }
